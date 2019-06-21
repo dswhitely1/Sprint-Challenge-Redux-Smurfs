@@ -18,7 +18,7 @@ const initialState = {
   smurfs: [],
   isLoading: false,
   error: null
-}
+};
 /*
   You'll only need one smurf reducer for this project.
   Feel free to export it as a default and import as rootReducer. 
@@ -27,9 +27,29 @@ const initialState = {
   Components can then read your store as, `state` and not `state.fooReducer`.
 */
 
-export default (state=initialState, action) =>{
+export default ( state = initialState, action ) => {
   const {type, payload} = action;
   switch (type) {
+    case C.FETCH_SMURF_START:
+      return {
+        ...state,
+        isLoading: true,
+        error    : null
+      };
+    case C.FETCH_SMURF_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        smurfs   : payload,
+        error    : null
+      };
+
+    case C.FETCH_SMURF_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error    : payload
+      };
     default:
       return state;
   }
