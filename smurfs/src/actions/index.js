@@ -51,7 +51,7 @@ export const addSmurf = smurf => async dispatch => {
 export const updateSmurf = smurf => async dispatch => {
   dispatch({type: C.UPDATE_SMURF_START});
   try {
-    const res = await axios.put('http://localhost:3333/smurfs', smurf);
+    const res = await axios.put(`http://localhost:3333/smurfs/${smurf.id}`, smurf);
     dispatch({type: C.UPDATE_SMURF_SUCCESS, payload: res.data})
   } catch(error) {
     dispatch({type: C.UPDATE_SMURF_FAILURE, payload: error});

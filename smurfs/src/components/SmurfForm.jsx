@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addSmurf, updateSmurf } from '../actions';
+import {
+  addSmurf,
+  updateSmurf
+} from '../actions';
 
 const SmurfForm       = props => {
-  if (props.smurf === "Reroute") props.history.push('/');
+  if (props.smurf === 'Reroute') props.history.push( '/' );
   const [name, setName]     = useState( props.smurf.name );
   const [age, setAge]       = useState( props.smurf.age );
   const [height, setHeight] = useState( props.smurf.height );
-  const [id, setId] = useState(props.smurf.id);
+  const [id, setId]         = useState( props.smurf.id );
   const handleSubmit        = e => {
     e.preventDefault();
-
-    props.addSmurf( {
+    console.log(id);
+    id !== null ? props.updateSmurf( {
+      id,
+      name,
+      height,
+      age
+    } ) : props.addSmurf( {
       name,
       age,
       height
@@ -66,13 +74,16 @@ const mapStateToProps = ( state, ownProps ) => {
     name  : '',
     age   : '',
     height: '',
-    id: null
+    id    : null
   });
 
   return {
-    smurf: editSmurf===undefined ? 'Reroute': editSmurf,
+    smurf: editSmurf === undefined ? 'Reroute' : editSmurf,
     error: state.error
   };
 };
 
-export default connect( mapStateToProps, {addSmurf, updateSmurf} )( SmurfForm );
+export default connect( mapStateToProps, {
+  addSmurf,
+  updateSmurf
+} )( SmurfForm );
