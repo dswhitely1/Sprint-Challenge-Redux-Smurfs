@@ -1,5 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import {deleteSmurf} from '../actions'
 
 const Smurf = ( {id, height, age, name, deleteSmurf} ) => {
   return (
@@ -32,4 +34,4 @@ Smurf.defaultProps = {
   age   : ''
 };
 
-export default Smurf;
+export default connect(null, {deleteSmurf})(Smurf);
