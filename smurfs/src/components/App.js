@@ -25,9 +25,9 @@ class App extends Component {
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
         <Route exact path="/" component={Smurfs}/>
-        <Route path={`/view-smurf/:smurfId`} componet={Smurfs} />
+        <Route path={`/view-smurf/:smurfId`} component={Smurfs} />
         <Route exact path={'/smurf-form'} component={SmurfForm} />
-        <Route path={`/smurf-form/:smurfId`} compoent={SmurfForm} />
+        <Route path={`/smurf-form/:smurfId`} component={SmurfForm} />
       </div>
     );
   }

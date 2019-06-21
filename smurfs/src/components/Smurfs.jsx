@@ -32,7 +32,8 @@ Smurf.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const displaySmurfs = ownProps.match.params.smurfID ? state.smurfs.filter(smurf => smurf.id.toString() === ownProps.match.params.smurfId) : state.smurfs;
+  const displaySmurfs = ownProps.match.params.smurfId ? state.smurfs.filter(smurf => smurf.id.toString() === ownProps.match.params.smurfId) : state.smurfs;
+  console.log(displaySmurfs);
   return {
     smurfs : displaySmurfs
   }
