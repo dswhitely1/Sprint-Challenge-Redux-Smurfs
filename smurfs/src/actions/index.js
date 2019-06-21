@@ -19,18 +19,31 @@ export const fetchSmurfs = () => async dispatch => {
   dispatch( {type: C.FETCH_SMURF_START} );
   try {
     const res = await axios.get( 'http://localhost:3333/smurfs' );
-    dispatch({type: C.FETCH_SMURF_SUCCESS, payload: res.data});
+    dispatch( {
+      type   : C.FETCH_SMURF_SUCCESS,
+      payload: res.data
+    } );
   } catch (error) {
-    dispatch({type: C.FETCH_SMURF_FAILURE, payload: error})
+    dispatch( {
+      type   : C.FETCH_SMURF_FAILURE,
+      payload: error
+    } );
   }
 };
 
 export const addSmurf = smurf => async dispatch => {
-  dispatch({type: C.ADD_SMURF_START});
+
+  dispatch( {type: C.ADD_SMURF_START} );
   try {
-    const res = await axios.post('http://localhost:3333/smurfs',smurf);
-    console.log(res);
-  } catch(error) {
-    console.log(error);
+    const res = await axios.post( 'http://localhost:3333/smurfs', smurf );
+    dispatch( {
+      type   : C.ADD_SMURF_SUCCESS,
+      payload: res.data
+    } );
+  } catch (error) {
+    dispatch( {
+      type   : C.ADD_SMURF_FAIL,
+      payload: error
+    } );
   }
-}
+};
