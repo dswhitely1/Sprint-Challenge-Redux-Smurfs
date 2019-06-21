@@ -24,3 +24,13 @@ export const fetchSmurfs = () => async dispatch => {
     dispatch({type: C.FETCH_SMURF_FAILURE, payload: error})
   }
 };
+
+export const addSmurf = smurf => async dispatch => {
+  dispatch({type: C.ADD_SMURF_START});
+  try {
+    const res = await axios.post('http://localhost:3333/smurfs',smurf);
+    console.log(res);
+  } catch(error) {
+    console.log(err);
+  }
+}

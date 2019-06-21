@@ -50,6 +50,26 @@ export default ( state = initialState, action ) => {
         isLoading: false,
         error    : payload
       };
+    case C.ADD_SMURF_START:
+      return {
+        ...state,
+        isLoading: true,
+        error    : null
+      }
+    case C.ADD_SMURF_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        smurfs   : payload,
+        error    : null
+      }
+    case C.ADD_SMURF_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error    : payload
+      }
+
     default:
       return state;
   }
