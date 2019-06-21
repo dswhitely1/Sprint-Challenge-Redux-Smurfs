@@ -1,39 +1,11 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 import Smurf from './Smurf';
 
 class Smurfs extends Component {
-  state = {
-    smurfs: []
-  };
-
-  componentDidMount() {
-    try {
-      if (this.props.match.params.smurfId) {
-        const singleSmurf = this.props.smurfs.filter( smurf => smurf.id.toString() === this.props.match.params.smurfId );
-        this.setState( {smurfs: singleSmurf} );
-      } else {
-        this.setState( {smurfs: this.props.smurfs} );
-      }
-    } catch(err) {
-      this.props.history.push( '/' );
-    }
-
-  }
-
-  componentDidUpdate( prevProps ) {
-    if (prevProps.smurfs !== this.props.smurfs) {
-      if (this.props.match.params.smurfId) {
-        const singleSmurf = this.props.smurfs.filter( smurf => smurf.id === this.props.match.params.smurfId );
-        this.setState( {smurfs: singleSmurf} );
-      } else {
-        this.setState( {smurfs: this.props.smurfs} );
-      }
-    }
-  }
-
   render() {
-    const {smurfs} = this.state;
+    const {smurfs} = this.props;
     return (
       <div className="Smurfs text-center">
         <h1>Smurf Village</h1>
@@ -46,7 +18,6 @@ class Smurfs extends Component {
                 age={smurf.age}
                 height={smurf.height}
                 key={smurf.id}
-                deleteSmurf={this.props.deleteSmurf}
               />
             );
           } )}
@@ -60,4 +31,11 @@ Smurf.defaultProps = {
   smurfs: [],
 };
 
-export default Smurfs;
+const mapStateToProps = (state, ownProps) => {
+  const displaySmurfs = ownProps.match.params.smurfID ? state.smurfs.filter(smurf => smurf.id.toString() === ownProps.match.params.smurfId) : state.smurfs;
+  return {
+    smurfs : displaySmurfs
+  }
+}
+
+export default connect(mapStateToProps)(Smurfs);
