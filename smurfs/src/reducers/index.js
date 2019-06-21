@@ -15,9 +15,9 @@ import C from '../actions/types';
  }
 */
 const initialState = {
-  smurfs: [],
+  smurfs   : [],
   isLoading: false,
-  error: null
+  error    : null
 };
 /*
   You'll only need one smurf reducer for this project.
@@ -55,20 +55,20 @@ export default ( state = initialState, action ) => {
         ...state,
         isLoading: true,
         error    : null
-      }
+      };
     case C.ADD_SMURF_SUCCESS:
       return {
         ...state,
         isLoading: false,
         smurfs   : payload,
         error    : null
-      }
+      };
     case C.ADD_SMURF_FAIL:
       return {
         ...state,
         isLoading: false,
         error    : payload
-      }
+      };
 
     default:
       return state;

@@ -31,6 +31,6 @@ export const addSmurf = smurf => async dispatch => {
     const res = await axios.post('http://localhost:3333/smurfs',smurf);
     console.log(res);
   } catch(error) {
-    console.log(err);
+    console.log(error);
   }
 }
